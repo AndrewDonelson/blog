@@ -50,3 +50,20 @@ curl https://get.ignite.com/username/blog@latest! | sudo bash
 - [Ignite CLI docs](https://docs.ignite.com)
 - [Cosmos SDK docs](https://docs.cosmos.network)
 - [Developer Chat](https://discord.gg/ignite)
+
+## serve
+
+🛠  Building proto...
+📦 Installing dependencies...
+🛠  Building the blockchain...
+💿 Initializing the app...
+🗂  Initialize accounts...
+🙂 Added account alice with 
+        - address blog1y5q36krm9vn586mg4tmmc5rcgnlxpz5uasplrw
+        - mnemonic: orient pipe phone usual office sunset ethics sudden unfair era fever cram picture ask school neither tortoise carbon cost only pony home soup pumpkin
+🙂 Added account bob with
+        - address blog197fy90tueppvx35ls7z8xysc6aesme58gkfa4n
+        - mnemonic: laptop metal enhance car rate whisper aim joke mix penalty much multiply foam victory museum payment catalog salt feature firm you vote celery virtual
+🌍 Tendermint node: http://0.0.0.0:26657
+🌍 Blockchain API: http://0.0.0.0:1317
+🌍 Token faucet: http://0.0.0.0:4500
