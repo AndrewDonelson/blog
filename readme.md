@@ -67,3 +67,20 @@ curl https://get.ignite.com/username/blog@latest! | sudo bash
 🌍 Tendermint node: http://0.0.0.0:26657
 🌍 Blockchain API: http://0.0.0.0:1317
 🌍 Token faucet: http://0.0.0.0:4500
+
+## create sample post
+
+```
+- address: blog17jh0y4m0pkwp987m5sn46tnnp3a5nu6zzk5z70
+  name: andrew
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AoJgIXKz7yDp9EUkBgjhP97hMnMVBueXehDD3O3CMGUm"}'
+  type: local
+```
+blogd tx blog create-post foo bar --from alice
+
+
+## Commands
+
+```
+ignite scaffold message createImage ipfsurl tags views likes dislikes
+```
