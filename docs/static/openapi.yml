@@ -44850,6 +44850,12 @@ paths:
       tags:
         - Query
 definitions:
+  blog.blog.MsgCreateImageResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
   blog.blog.MsgCreatePostResponse:
     type: object
     properties:

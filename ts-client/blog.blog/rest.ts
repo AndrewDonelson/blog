@@ -9,6 +9,11 @@
  * ---------------------------------------------------------------
  */
 
+export interface BlogMsgCreateImageResponse {
+  /** @format uint64 */
+  id?: string;
+}
+
 export interface BlogMsgCreatePostResponse {
   /** @format uint64 */
   id?: string;

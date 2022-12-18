@@ -81,6 +81,22 @@ blogd tx blog create-post foo bar --from alice
 
 ## Commands
 
+## Create Image Endpoint/Message
+
 ```
 ignite scaffold message createImage ipfsurl tags views likes dislikes
 ```
+
+Output:
+
+        modify proto/blog/blog/tx.proto
+        modify x/blog/client/cli/tx.go
+        create x/blog/client/cli/tx_create_image.go
+        create x/blog/keeper/msg_server_create_image.go
+        modify x/blog/module_simulation.go
+        create x/blog/simulation/create_image.go
+        modify x/blog/types/codec.go
+        create x/blog/types/message_create_image.go
+        create x/blog/types/message_create_image_test.go
+
+        🎉 Created a message `createImage`.

@@ -16,6 +16,10 @@ const (
 	// Keep track of the index of posts
 	PostKey      = "Post/value/"
 	PostCountKey = "Post/count/"
+
+	// Keep track of the index of images
+	ImageKey      = "Image/value/"
+	ImageCountKey = "Image/count/"
 )
 
 func KeyPrefix(p string) []byte {

@@ -8,9 +8,10 @@ import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
 import { MsgCreatePost } from "./types/blog/blog/tx";
+import { MsgCreateImage } from "./types/blog/blog/tx";
 
 
-export { MsgCreatePost };
+export { MsgCreatePost, MsgCreateImage };
 
 type sendMsgCreatePostParams = {
   value: MsgCreatePost,
@@ -18,9 +19,19 @@ type sendMsgCreatePostParams = {
   memo?: string
 };
 
+type sendMsgCreateImageParams = {
+  value: MsgCreateImage,
+  fee?: StdFee,
+  memo?: string
+};
+
 
 type msgCreatePostParams = {
   value: MsgCreatePost,
+};
+
+type msgCreateImageParams = {
+  value: MsgCreateImage,
 };
 
 
@@ -55,12 +66,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgCreateImage({ value, fee, memo }: sendMsgCreateImageParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateImage: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgCreateImage({ value: MsgCreateImage.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateImage: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		
 		msgCreatePost({ value }: msgCreatePostParams): EncodeObject {
 			try {
 				return { typeUrl: "/blog.blog.MsgCreatePost", value: MsgCreatePost.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreatePost: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateImage({ value }: msgCreateImageParams): EncodeObject {
+			try {
+				return { typeUrl: "/blog.blog.MsgCreateImage", value: MsgCreateImage.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateImage: Could not create message: ' + e.message)
 			}
 		},
 		

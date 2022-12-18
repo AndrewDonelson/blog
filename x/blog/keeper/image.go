@@ -9,19 +9,19 @@ import (
 	"blog/x/blog/types"
 )
 
-// func (k Keeper) AppendPost() uint64 {
-// 	count := k.GetPostCount()
-// 	store.Set()
-// 	k.SetPostCount()
-// 	return count
+// func (k Keeper) AppendImage() uint64 {
+//   count := k.GetImageCount()
+//   store.Set()
+//   k.SetImageCount()
+//   return count
 // }
 
-func (k Keeper) GetPostCount(ctx sdk.Context) uint64 {
-	// Get the store using storeKey (which is "blog") and PostCountKey (which is "Post/count/")
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.PostCountKey))
+func (k Keeper) GetImageCount(ctx sdk.Context) uint64 {
+	// Get the store using storeKey (which is "blog") and ImageCountKey (which is "Image/count/")
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.ImageCountKey))
 
-	// Convert the PostCountKey to bytes
-	byteKey := []byte(types.PostCountKey)
+	// Convert the ImageCountKey to bytes
+	byteKey := []byte(types.ImageCountKey)
 
 	// Get the value of the count
 	bz := store.Get(byteKey)
@@ -35,30 +35,30 @@ func (k Keeper) GetPostCount(ctx sdk.Context) uint64 {
 	return binary.BigEndian.Uint64(bz)
 }
 
-func (k Keeper) SetPostCount(ctx sdk.Context, count uint64) {
-	// Get the store using storeKey (which is "blog") and PostCountKey (which is "Post/count/")
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.PostCountKey))
+func (k Keeper) SetImageCount(ctx sdk.Context, count uint64) {
+	// Get the store using storeKey (which is "blog") and ImageCountKey (which is "Image/count/")
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.ImageCountKey))
 
-	// Convert the PostCountKey to bytes
-	byteKey := []byte(types.PostCountKey)
+	// Convert the ImageCountKey to bytes
+	byteKey := []byte(types.ImageCountKey)
 
 	// Convert count from uint64 to string and get bytes
 	bz := make([]byte, 8)
 	binary.BigEndian.PutUint64(bz, count)
 
-	// Set the value of Post/count/ to count
+	// Set the value of Image/count/ to count
 	store.Set(byteKey, bz)
 }
 
-func (k Keeper) AppendPost(ctx sdk.Context, post types.Post) uint64 {
+func (k Keeper) AppendImage(ctx sdk.Context, post types.Image) uint64 {
 	// Get the current number of posts in the store
-	count := k.GetPostCount(ctx)
+	count := k.GetImageCount(ctx)
 
 	// Assign an ID to the post based on the number of posts in the store
 	post.Id = count
 
 	// Get the store
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.PostKey))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.ImageKey))
 
 	// Convert the post ID into bytes
 	byteKey := make([]byte, 8)
@@ -71,6 +71,6 @@ func (k Keeper) AppendPost(ctx sdk.Context, post types.Post) uint64 {
 	store.Set(byteKey, appendedValue)
 
 	// Update the post count
-	k.SetPostCount(ctx, count+1)
+	k.SetImageCount(ctx, count+1)
 	return count
 }

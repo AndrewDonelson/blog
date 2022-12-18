@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package blog.blog;
+
+option go_package = "blog/x/blog/types";
+
+message Image {
+    string creator = 1;
+    uint64 id = 2;
+    string ipfsurl = 3;
+    string tags = 4;
+    string views = 5;
+    string likes = 6;
+    string dislikes = 7;
+}

@@ -1,10 +1,11 @@
 import { Client, registry, MissingWalletError } from 'blog-client-ts'
 
+import { Image } from "blog-client-ts/blog.blog/types"
 import { Params } from "blog-client-ts/blog.blog/types"
 import { Post } from "blog-client-ts/blog.blog/types"
 
 
-export { Params, Post };
+export { Image, Params, Post };
 
 function initClient(vuexGetters) {
 	return new Client(vuexGetters['common/env/getEnv'], vuexGetters['common/wallet/signer'])
@@ -39,6 +40,7 @@ const getDefaultState = () => {
 				Posts: {},
 				
 				_Structure: {
+						Image: getStructure(Image.fromPartial({})),
 						Params: getStructure(Params.fromPartial({})),
 						Post: getStructure(Post.fromPartial({})),
 						
@@ -176,6 +178,19 @@ export default {
 				}
 			}
 		},
+		async sendMsgCreateImage({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const client=await initClient(rootGetters)
+				const result = await client.BlogBlog.tx.sendMsgCreateImage({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateImage:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgCreateImage:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
 		
 		async MsgCreatePost({ rootGetters }, { value }) {
 			try {
@@ -187,6 +202,19 @@ export default {
 					throw new Error('TxClient:MsgCreatePost:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgCreatePost:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgCreateImage({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.BlogBlog.tx.msgCreateImage({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateImage:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgCreateImage:Create Could not create message: ' + e.message)
 				}
 			}
 		},
