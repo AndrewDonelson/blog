@@ -9,13 +9,6 @@ import (
 	"blog/x/blog/types"
 )
 
-// func (k Keeper) AppendImage() uint64 {
-//   count := k.GetImageCount()
-//   store.Set()
-//   k.SetImageCount()
-//   return count
-// }
-
 func (k Keeper) GetImageCount(ctx sdk.Context) uint64 {
 	// Get the store using storeKey (which is "blog") and ImageCountKey (which is "Image/count/")
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.ImageCountKey))

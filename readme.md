@@ -53,17 +53,15 @@ curl https://get.ignite.com/username/blog@latest! | sudo bash
 
 ## serve
 
+Cosmos SDK's version is: stargate - v0.46.6
+
 🛠  Building proto...
 📦 Installing dependencies...
 🛠  Building the blockchain...
 💿 Initializing the app...
 🗂  Initialize accounts...
-🙂 Added account alice with 
-        - address blog1y5q36krm9vn586mg4tmmc5rcgnlxpz5uasplrw
-        - mnemonic: orient pipe phone usual office sunset ethics sudden unfair era fever cram picture ask school neither tortoise carbon cost only pony home soup pumpkin
-🙂 Added account bob with
-        - address blog197fy90tueppvx35ls7z8xysc6aesme58gkfa4n
-        - mnemonic: laptop metal enhance car rate whisper aim joke mix penalty much multiply foam victory museum payment catalog salt feature firm you vote celery virtual
+🙂 Added account alice with address blog1nad8tgwyr0pjprzgr3hjtky9a6fdsn7vul37sq and mnemonic: during govern gadget absent submit joke raccoon deal seminar divide pole claw foam grit style laptop monster zone clog yellow harvest slam marble basic
+🙂 Added account bob with address blog16st0y37un0euqvswja7pjhv4l5djmzsrwphfx8 and mnemonic: disease license card party dry dog sport twice aim early change cereal combine master grant erupt raven neglect worth eternal unveil time allow van
 🌍 Tendermint node: http://0.0.0.0:26657
 🌍 Blockchain API: http://0.0.0.0:1317
 🌍 Token faucet: http://0.0.0.0:4500
